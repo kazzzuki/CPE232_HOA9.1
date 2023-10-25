@@ -1,0 +1,17 @@
+
+  - name: Download Prometheus binary in CentOS
+    command: "curl -LO https://github.com/prometheus/prometheus/releases/download/v2.31.2/prometheus-2.31.2.linux-amd64.tar.gz"
+    args:
+      chdir: /tmp
+    when: ansible_distribution == "CentOS"
+
+  - name: Extract Prometheus binary in CentOS
+    command: "tar xvfz /tmp/prometheus-2.31.2.linux-amd64.tar.gz"
+    args:
+      chdir: /tmp
+    when: ansible_distribution == "CentOS"
+
+  - name: Move Prometheus binary to /usr/local/bin
+    command: "mv /tmp/prometheus-2.31.2.linux-amd64/prometheus /usr/local/bin/"
+    when: ansible_distribution == "CentOS"
+

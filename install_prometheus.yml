@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Update Ubuntu and CentOS Package Cache
+    apt:
+      update_cache: yes
+      state: present
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Update CentOS Package Cache
+    dnf:
+      update_cache: yes
+      use_backend: dnf
+      state: present
+    when: ansible_distribution == "CentOS"
+
+- hosts: all
+  become: true
+  roles:
+    - Hoa9_Ubuntu
+    - Hoa9_CentOS
+
+
